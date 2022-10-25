@@ -1,0 +1,57 @@
+.item_container {
+  width: auto;
+  display: block;
+}
+
+.item_holder {
+  display: flex;
+  justify-content: space-between;
+}
+
+.fooditem {
+  text-align: left;
+  display: inline-block;
+}
+
+.item_num {
+  display: flex;
+  column-gap: 10px;
+  font-weight: bold;
+}
+
+.itemcount_holder {
+  display: flex;
+  flex-direction: column;
+  row-gap: 5px;
+}
+
+h2 {
+  font-size: 20px;
+  margin: 4px;
+}
+
+#desc {
+  font-style: italic;
+  font-weight: normal;
+  font-size: 14px;
+}
+
+#price {
+  color: #864820;
+}
+
+.input {
+  width: 35px;
+  font-size: 15px;
+  font-weight: bold;
+  border: 1px solid rgb(135, 135, 135);
+  border-radius: 6px;
+  padding: 3px;
+}
+
+.hr {
+  border: none;
+  background-color: rgba(153, 153, 153, 0.5);
+  height: 0.5px;
+  margin: 20px 0px 20px 0px;
+}
