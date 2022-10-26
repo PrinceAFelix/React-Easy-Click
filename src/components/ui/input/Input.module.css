@@ -1,0 +1,14 @@
+.input {
+  display: flex;
+  column-gap: 10px;
+  font-weight: bold;
+}
+
+/* .input {
+  width: 35px;
+  font-size: 15px;
+  font-weight: bold;
+  border: 1px solid rgb(135, 135, 135);
+  border-radius: 6px;
+  padding: 3px;
+} */

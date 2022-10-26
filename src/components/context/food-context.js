@@ -1,5 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import nextId from "react-id-generator";
+
+
 
 
 const availableFood = [
@@ -37,13 +39,15 @@ const availableFood = [
 
 
 const FoodContext = React.createContext({
-    foodList: availableFood,
+    foodList: [{}],
 });
 
 
 export const FoodContextProvider = (props) => {
 
-    return <FoodContext.Provider value={{ foodList: FoodContext }}>{props.children}</FoodContext.Provider>
+    const [list, setList] = useState(availableFood);
+
+    return <FoodContext.Provider value={{ foodList: list }}>{props.children}</FoodContext.Provider>
 }
 
 export default FoodContext;

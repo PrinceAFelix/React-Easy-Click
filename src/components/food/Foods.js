@@ -12,7 +12,7 @@ export const Foods = (props) => {
         <ul className={classes.ul}>
             {
                 ctx.foodList.map((food) => (
-                    <FoodItem key={food.id} foodName={food.food} description={food.description} price={food.price} />
+                    <FoodItem id={food.id} key={food.id} foodName={food.food} description={food.description} price={food.price} />
                 ))
             }
         </ul>

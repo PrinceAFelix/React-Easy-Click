@@ -13,18 +13,6 @@
   display: inline-block;
 }
 
-.item_num {
-  display: flex;
-  column-gap: 10px;
-  font-weight: bold;
-}
-
-.itemcount_holder {
-  display: flex;
-  flex-direction: column;
-  row-gap: 5px;
-}
-
 h2 {
   font-size: 20px;
   margin: 4px;
@@ -38,15 +26,6 @@ h2 {
 
 #price {
   color: #864820;
-}
-
-.input {
-  width: 35px;
-  font-size: 15px;
-  font-weight: bold;
-  border: 1px solid rgb(135, 135, 135);
-  border-radius: 6px;
-  padding: 3px;
 }
 
 .hr {
