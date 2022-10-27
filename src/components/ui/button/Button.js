@@ -9,7 +9,6 @@ export const Button = (props) => {
     const cartCtx = useContext(CartContext)
 
     const numOfItems = cartCtx.items.reduce((current, item) => {
-
         return current + item.amount;
     }, 0);
 

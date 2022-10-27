@@ -1,3 +1,4 @@
+import { faCommentsDollar } from "@fortawesome/free-solid-svg-icons";
 import React, { useState, useReducer } from "react";
 
 const CartContext = React.createContext({
@@ -20,15 +21,18 @@ const cartReducer = (state, action) => {
 
     if (action.type === 'ADD') {
 
-        const exists = state.items.find(item => item.id === action.item.id);
+        const exists = state.items.find(item => { return item.id === action.item.id });
+        let updatedItems = state.items.concat(action.item);
+        if (exists !== undefined) {
+            updatedItems = state.items;
+        }
 
-        const updatedItems = state.items.concat(action.item);
-        const updatedTotalAmount = state.totalAmount + action.item.price * action.item.amount;
-
+        let updatedTotalAmount = state.totalAmount + action.item.price * action.item.amount;
 
         return {
             items: updatedItems,
             totalAmount: updatedTotalAmount
+
         }
     }
 
@@ -57,7 +61,19 @@ export const CartContextProvider = (props) => {
     }
 
     const addItemHandler = (item) => {
+
+        const exists = cartState.items.find(a => { return a.id === item.id });
+
+        if (exists !== undefined) {
+            exists.amount += item.amount;
+            item = exists;
+            console.log(item)
+        }
+
         dispatchCartAction({ type: 'ADD', item: item })
+
+
+
         setCartCtx((prevCtx) => {
             return { ...prevCtx, isBump: true }
         });
@@ -76,6 +92,9 @@ export const CartContextProvider = (props) => {
         onToggle: toggleModalHandler,
         isClick: cartCtx.isToggleModal,
     }
+
+
+
 
     return <CartContext.Provider value={cartContext}>{props.children}</CartContext.Provider>
 }
