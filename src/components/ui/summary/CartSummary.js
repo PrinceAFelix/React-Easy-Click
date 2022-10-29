@@ -15,6 +15,9 @@ export const CartSummary = (props) => {
         return current + item.price * item.amount;
     }, 0)
 
+    const onOrder = () => {
+        cartCtx.onOrder()
+    }
     return (
         <SummaryModal>
             <IconContextProvider>
@@ -26,7 +29,7 @@ export const CartSummary = (props) => {
             </div>
             <div className={classes.actions}>
                 <button className={classes['button--alt']} onClick={cartCtx.onToggle}>Close</button>
-                <button className={classes.button}>Order</button>
+                <button onClick={onOrder} className={classes.button}>Order</button>
             </div>
         </SummaryModal>
     )

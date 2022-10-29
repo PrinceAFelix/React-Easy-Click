@@ -4,12 +4,27 @@ import classes from "./CartItem.module.css"
 
 
 import IconsContext from "../../context/icon-context"
-
+import CartContext from "../../context/cart-context";
 
 
 export const CartItem = (props) => {
 
     const iconCtx = useContext(IconsContext)
+
+    const cartCtx = useContext(CartContext)
+
+    const handleAddClick = () => {
+        cartCtx.onAddItem({
+            id: props.id,
+            foodName: props.foodName,
+            amount: 1,
+            price: props.price
+        })
+    }
+
+    const handleRemoveClick = () => {
+        cartCtx.onRemoveItem(props.id);
+    }
 
     return (
         <div className={classes.cart_container}>
@@ -25,8 +40,8 @@ export const CartItem = (props) => {
                     </div>
                 </div>
                 <div className={classes.action}>
-                    <button type="button"> {iconCtx.minus} </button>
-                    <button type="button"> {iconCtx.plus} </button>
+                    <button onClick={handleRemoveClick} type="button"> {iconCtx.minus} </button>
+                    <button onClick={handleAddClick} type="button"> {iconCtx.plus} </button>
                 </div>
             </div>
             <hr className={classes.hr} />

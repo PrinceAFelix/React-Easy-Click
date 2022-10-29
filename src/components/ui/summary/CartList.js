@@ -12,7 +12,7 @@ export const CartList = (props) => {
         <ul className={classes.ul}>
             {
                 cartCtx.items.map((item) => (
-                    <CartItem key={item.id} foodName={item.foodName} price={item.price} amount={item.amount} />
+                    <CartItem key={item.id} id={item.id} foodName={item.foodName} price={item.price} amount={item.amount} />
                 ))
             }
         </ul>

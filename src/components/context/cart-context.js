@@ -7,6 +7,7 @@ const CartContext = React.createContext({
     onAddItem: (item) => { },
     onRemoveItem: (id) => { },
     onToggle: () => { },
+    onOrder: () => { },
     isClick: false,
     isBump: false,
 });
@@ -38,6 +39,30 @@ const cartReducer = (state, action) => {
 
     if (action.type === 'REMOVE') {
 
+        let temp = [];
+
+        state.items.forEach(item => {
+
+            if (item.id !== action.id) {
+                temp.push(item)
+            } else {
+                if (item.amount !== 1) {
+                    item.amount -= 1;
+                    temp.push(item)
+                }
+            }
+
+        });
+
+        let updatedItems = (temp);
+
+        return {
+            items: updatedItems,
+        }
+    }
+
+    if (action.type === 'ORDER') {
+        return defaultState;
     }
 
     return defaultState;
@@ -70,18 +95,29 @@ export const CartContextProvider = (props) => {
             console.log(item)
         }
 
-        dispatchCartAction({ type: 'ADD', item: item })
-
-
-
         setCartCtx((prevCtx) => {
             return { ...prevCtx, isBump: true }
         });
 
+        setTimeout(() => {
+            setCartCtx((prevCtx) => {
+                return { ...prevCtx, isBump: false }
+            });
+        }, 200)
+
+        dispatchCartAction({ type: 'ADD', item: item })
+
     }
 
     const removeItemHandler = (id) => {
+
         dispatchCartAction({ type: 'REMOVE', id: id })
+    }
+
+    const handleOrder = () => {
+        alert("works");
+        toggleModalHandler();
+        dispatchCartAction({ type: 'ORDER' })
     }
 
     const cartContext = {
@@ -90,7 +126,9 @@ export const CartContextProvider = (props) => {
         onAddItem: addItemHandler,
         onRemoveItem: removeItemHandler,
         onToggle: toggleModalHandler,
+        onOrder: handleOrder,
         isClick: cartCtx.isToggleModal,
+        isBump: cartCtx.isBump,
     }
 
 
